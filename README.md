@@ -177,13 +177,13 @@ any errors are all written to `backend/logs/app.log` with a timestamp.
 
 ## 4. Error handling reference (Task 7)
 
-| Situation | What happens |
-|---|---|
-| Backend not running | `app.js` health check fails every 15s; status dot turns red and a banner reads "Could not reach the backend server." |
-| Model not running (Ollama down) | `llm_client.py` raises `LLMConnectionError`; backend returns HTTP 503 with a clear message; frontend shows it as a system bubble |
-| Ollama running but model missing/erroring | `llm_client.py` raises `LLMResponseError`; backend returns HTTP 502 |
-| Empty question | Caught client-side before the request is even sent (`inputHint` message); also caught server-side via Pydantic validation (`field_validator`) returning HTTP 422 as a second layer of defense |
-| Slow response | Loading bubble with an animated "thinking…" indicator; after 4 seconds the message updates to reassure the student the model is still working |
+| Situation                                 | What happens                                                                                                                                                                                  |
+| ----------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Backend not running                       | `app.js` health check fails every 15s; status dot turns red and a banner reads "Could not reach the backend server."                                                                          |
+| Model not running (Ollama down)           | `llm_client.py` raises `LLMConnectionError`; backend returns HTTP 503 with a clear message; frontend shows it as a system bubble                                                              |
+| Ollama running but model missing/erroring | `llm_client.py` raises `LLMResponseError`; backend returns HTTP 502                                                                                                                           |
+| Empty question                            | Caught client-side before the request is even sent (`inputHint` message); also caught server-side via Pydantic validation (`field_validator`) returning HTTP 422 as a second layer of defense |
+| Slow response                             | Loading bubble with an animated "thinking…" indicator; after 4 seconds the message updates to reassure the student the model is still working                                                 |
 
 ---
 
