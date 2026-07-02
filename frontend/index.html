@@ -6,6 +6,7 @@
   <title>University Student Support Assistant</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -14,31 +15,78 @@
 
     <!-- Header / Ledger strip -->
     <header class="topbar">
-      <div class="topbar-mark">USA</div>
-      <div class="topbar-title">
-        <h1>University Student Support Assistant</h1>
-        <p>Registration &middot; Exams &middot; Library &middot; ICT &middot; Hostels &middot; Fees</p>
-      </div>
-      <div class="topbar-status">
+
+    <div class="topbar-left">
+
+        <img src="./logo.png" alt="logo" class="udsm-logo">
+        <div class="university-name">
+            <div class="uni-line1">University of</div>
+
+            <div class="uni-bottom">
+                <span class="uni-line2">Dar es Salaam</span>
+
+                <span class="assistant-title">
+                    Student Support Assistant
+                </span>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="topbar-status">
         <span class="status-dot" id="statusDot"></span>
-        <span id="statusText">checking backend&hellip;</span>
-      </div>
-    </header>
+        <span id="statusText">Online</span>
+    </div>
+
+</header>
 
     <main class="layout">
 
       <!-- Sidebar: topic index -->
       <aside class="sidebar">
-        <h2>Ask about</h2>
+        <h2>QUICK TOPICS</h2>
         <ul class="topic-list" id="topicList">
-          <li data-q="How do I register for courses this semester?">01 &nbsp;Course registration</li>
-          <li data-q="What are the examination rules I need to know?">02 &nbsp;Examination rules</li>
-          <li data-q="How many books can I borrow from the library?">03 &nbsp;Library services</li>
-          <li data-q="My WiFi is not connecting, who do I contact?">04 &nbsp;ICT support</li>
-          <li data-q="How do I apply for a hostel room?">05 &nbsp;Hostel application</li>
-          <li data-q="How can I pay my tuition fees?">06 &nbsp;Fee payment</li>
-          <li data-q="When does the semester start and end?">07 &nbsp;Academic calendar</li>
-          <li data-q="What is the university's code of conduct?">08 &nbsp;Student conduct</li>
+
+        <li data-q="How do I register for courses this semester?">
+            <i class="fa-solid fa-user-graduate"></i>
+            Course Registration
+          </li>
+
+        <li data-q="What are the examination rules I need to know?">
+             <i class="fa-solid fa-file-pen"></i>
+              Examination Rules
+          </li>
+
+        <li data-q="How many books can I borrow from the library?">
+            <i class="fa-solid fa-book"></i>
+            Library Services
+          </li>
+
+        <li data-q="My WiFi is not connecting, who do I contact?">
+            <i class="fa-solid fa-laptop"></i>
+            ICT Support
+          </li>
+
+        <li data-q="How do I apply for a hostel room?">
+            <i class="fa-solid fa-house"></i>
+            Hostel Application
+          </li>
+
+        <li data-q="How can I pay my tuition fees?">
+            <i class="fa-solid fa-wallet"></i>
+            Fee Payment
+          </li>
+
+        <li data-q="When does the semester start and end?">
+            <i class="fa-solid fa-calendar-days"></i>
+            Academic Calendar
+          </li>
+
+        <li data-q="What is the university's code of conduct?">
+            <i class="fa-solid fa-scale-balanced"></i>
+            Student Conduct
+          </li>
+
         </ul>
         <p class="sidebar-note">Tap a topic to fill in a sample question, or type your own below.</p>
       </aside>
@@ -49,9 +97,8 @@
           <div class="bubble bubble-assistant">
             <div class="bubble-label">Assistant</div>
             <div class="bubble-text">
-              Welcome. I can help with course registration, exams, the library, ICT support,
-              hostels, fee payment, the academic calendar, and student conduct. What would you
-              like to know?
+Hello! How can I help you today?
+I can assist you with university services, academic procedures, registration, examinations, fees, accommodation, and general student support.
             </div>
           </div>
         </div>
@@ -64,7 +111,7 @@
         <form class="composer" id="composerForm">
           <textarea
             id="questionInput"
-            placeholder="Type your question about university services&hellip;"
+            placeholder="Ask about University Services&hellip;"
             rows="1"
             autocomplete="off"
           ></textarea>
