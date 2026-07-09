@@ -8,7 +8,7 @@ The primary use case is to provide students with quick, accurate answers about a
 
 - **Ad-hoc questions from students:** A student opens the frontend, types a question (or selects a suggested topic), and the system returns a grounded answer derived from the FAQ (if matched) and refined by an LLM response.
 - **Developer / operator checks:** A developer or operator can call the backend HTTP endpoints directly (for example, to test connectivity to Ollama) via the `/health` and `/ask` routes exposed by the FastAPI server.
-
+![alt text](usecaseee.png)
 The project is intentionally lightweight: the browser-based frontend (plain HTML/CSS/JS) is decoupled from the backend so the latter can be hosted locally or on a private server while the LLM runs on the same machine via Ollama. This design keeps the student-facing UI separate from the model and avoids exposing the model endpoints to the public internet.
 
 **Tools and Technologies Used**
@@ -17,6 +17,7 @@ The implementation uses the following main components (see repository files for 
 
 - **Python & FastAPI:** The backend is implemented with FastAPI and exposes `/health` and `/ask` endpoints. See [backend/main.py](backend/main.py).
 - **Ollama (local LLM host):** The backend communicates with a local Ollama HTTP API to run model generation. The client logic is implemented in [backend/llm_client.py](backend/llm_client.py) and configured in [backend/config.py](backend/config.py).
+![alt text](ollama......png)
 - **Simple FAQ knowledge base:** A small keyword-based FAQ module provides grounding context to improve the factuality of answers. See [backend/faq.py](backend/faq.py).
 - **Frontend:** A plain HTML/CSS/JavaScript single-page UI implements a chat-like experience and health checks against the backend. See [frontend/index.html](frontend/index.html), [frontend/style.css](frontend/style.css), and [frontend/app.js](frontend/app.js).
 - **Testing:** A small test suite uses `pytest` to validate the `/health` route and basic `/ask` input validation. See [tests/test_api.py](tests/test_api.py). The `requirements.txt` lists the Python dependencies necessary to run and test the backend.
@@ -34,6 +35,7 @@ Key design decisions:
 - **Local-first hosting:** Running Ollama locally keeps data and model interactions private to the operator's machine.
 - **FAQ-based grounding:** Injecting a short, authoritative FAQ snippet into the prompt before calling the LLM reduces hallucination on policy-related queries.
 - **Separation of concerns:** The frontend is static and can be served directly or via a small static file server, while the backend is an API server; this makes deployment flexible.
+![alt text](fastapi.png)
 
 **Implementation Steps**
 
@@ -42,6 +44,7 @@ The repository includes all code required to reproduce the application. High-lev
 1. Project skeleton and dependencies
 
 - Create the Python project with a `backend` package and a static `frontend` directory. Add a `requirements.txt` (dependencies include `fastapi`, `uvicorn`, `httpx` or `requests`, and `pytest` for tests). See `requirements.txt`.
+![alt text](venv.png)
 
 2. Backend configuration
 
@@ -62,6 +65,7 @@ The repository includes all code required to reproduce the application. High-lev
 6. Frontend UI
 
 - Implement a minimal static UI in `frontend/index.html` and `frontend/app.js` that performs periodic backend health checks, sends questions to `/ask`, and renders chat bubbles for system, user, and model messages. Health status and FAQ tags are surfaced in the UI.
+![alt text](frontend.png)
 
 7. Tests
 
@@ -72,6 +76,8 @@ The repository includes all code required to reproduce the application. High-lev
 Testing approaches used in the repository:
 
 - **Unit / Integration tests:** `pytest` tests in [tests/test_api.py](tests/test_api.py) check the API contract (health and validation). These tests run quickly without requiring an LLM except for an optional integration case.
+![alt text](pytest.png)
+
 - **Manual end-to-end tests:** Start Ollama locally, run the FastAPI app with `uvicorn backend.main:app --reload --port 8000`, and open `frontend/index.html` (or serve it). Observe that questions return answers, the FAQ tag appears when a topic is matched, and the backend logs requests to `backend/logs/app.log`.
 
 Observed behavior and metrics (typical during development):
